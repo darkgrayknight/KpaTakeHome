@@ -3,7 +3,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.28010.2041
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KpaTakeHome", "KpaTakeHome\KpaTakeHome.csproj", "{AB45B7E0-2A92-45D5-8812-90EF4F87A929}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "KpaTakeHome", "KpaTakeHome\KpaTakeHome.csproj", "{AB45B7E0-2A92-45D5-8812-90EF4F87A929}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Information", "Information", "{05671D72-1991-4874-92D5-25B65278FD98}"
+	ProjectSection(SolutionItems) = preProject
+		Information\KPA Take-Home Test.docx = Information\KPA Take-Home Test.docx
+		Information\sample.csv = Information\sample.csv
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

@@ -1,0 +1,71 @@
+﻿@{
+	ViewData["Title"] = "Weather - Temperature";
+}
+<script type="text/javascript">
+	function LoadWeather() {
+		var div = $('#WeatherResults')[0];
+		var lat = $('#Latitude')[0].value;
+		var long = $('#Longitude')[0].value;
+		var message = Validate(lat, long);
+		if (message === 'true') {
+			var url = Url(lat, long);
+			$.ajax({
+				url: url,
+				type: 'GET',
+				dataType: 'jsonp',
+				success: function (data) {
+					div.innerHTML = '<p>Temperature: ' + data.currently.temperature + '</p>';
+				},
+				error: function(data) {
+					div.innerHTML = '<p>Error in response: ' + data + '</p>';
+				}
+			});
+		} else {
+			div.innerHTML = '<p>' + message + '</p>';
+		}
+	}
+
+	function Validate(lat, long) {
+		if ((lat == '') || (long == '')) {
+			return 'Please enter numbers for latitude and longitude.';
+		}
+		if (isNaN(lat) || isNaN(long)) {
+			return 'Please enter only numbers for latitude and longitude.';
+		}
+		if ((lat < -90) || (lat > 90)) {
+			return 'Please enter valid latitude values [-90 to 90].';
+		}
+		if ((long < -180) || (long > 180)) {
+			return 'Please enter valid longitude values [-180 to 180].';
+		}
+		return 'true';
+	}
+
+	function Url(lat, long) {
+		var key = '1f9a5eedd4211ec9f965223be81f2020';
+		return 'https://api.darksky.net/forecast/' + key + '/' + lat + ',' + long + '';
+	}
+</script>
+
+<h2>Temperature by Lat./Long.</h2>
+<div class="container">
+	<div class="row">
+		<div class="col-sm-3">
+			<label for="Latitude" class="label label-primary" style="font-size: larger;">Latitude:</label>
+			<input type="text" id="Latitude" placeholder="-90 to 90 i.e. 40.014257" class="input-lg" />
+		</div>
+		<div class="col-sm-3">
+			<label for="Longitude" class="label label-primary" style="font-size: larger;">Longitude:</label>
+			<input type="text" id="Longitude" placeholder="-180 to 180 i.e. -105.126537" class="input-lg" />
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-sm-6 text-center" style="padding: 1.5em;">
+			<button id="LookupButton" onclick="LoadWeather();" class="btn btn-primary">Find Temperature</button>
+		</div>
+	</div>
+</div>
+<div class="container" style="padding: 2em;">
+	<div id="WeatherResults" class="col-sm-6 h3 text-primary">
+	</div>
+</div>

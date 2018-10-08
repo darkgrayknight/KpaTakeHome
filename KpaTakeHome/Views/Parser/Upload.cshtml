@@ -1,0 +1,20 @@
+﻿@{
+	ViewData["Title"] = "Upload CSV File";
+}
+
+@using (Html.BeginForm("Upload", "Parser", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+	<h2>Upload CSV File</h2>
+	<div class="container" style="text-align: center; padding: 2em;">
+		<div class="row">
+			<div class="col-lg-12">
+				<input id="model" type="file" accept="csv" name="model" data-val="true" data-val-required="File is required" class="btn btn-lg" style="margin: 1em auto;" />
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-lg-12 text-center">
+				<input class="btn btn-primary" type="submit" value="Upload" />
+			</div>
+		</div>
+	</div>
+}

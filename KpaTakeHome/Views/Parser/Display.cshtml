@@ -1,0 +1,28 @@
+﻿@{
+	var people = ViewData["People"] as List<Person> ?? new List<Person>();
+	ViewData["Title"] = "Uploaded Data";
+}
+
+<h2>Uploaded Data</h2>
+
+<div>
+	<table class="table table-striped">
+		<thead>
+			<tr>
+				<th>Email Address</th>
+				<th>First Name</th>
+				<th>Last Name</th>
+			</tr>
+		</thead>
+		<tbody>
+		@foreach (var person in people)
+		{
+			<tr>
+				<td>@person.Email</td>
+				<td>@person.FirstName</td>
+				<td>@person.LastName</td>
+			</tr>
+		}
+		</tbody>
+	</table>
+</div>
